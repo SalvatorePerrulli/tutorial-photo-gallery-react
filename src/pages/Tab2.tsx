@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet } from '@ionic/react';
+import { IonContent, IonButtons,IonMenuButton,IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet } from '@ionic/react';
 import { camera, trash, close } from 'ionicons/icons';
 import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
+import MenuLaterale from '../components/MenuLaterale';
+import HeadersPagina from '../components/HeadersPagina';
 
 const Tab2: React.FC = () => {
   const { deletePhoto, photos, takePhoto } = usePhotoGallery();
   const [photoToDelete, setPhotoToDelete] = useState<UserPhoto>();
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Photo Gallery</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
+    <>
+    <IonPage  id="main-content">
+      <HeadersPagina title="My Pet"/>
+      <IonContent fullscreen={true}>
       <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Photo Gallery</IonTitle>
+            <IonButtons slot="start">
+              <IonMenuButton></IonMenuButton>
+            </IonButtons> 
+            <IonTitle>Photo Gallery</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonGrid>
@@ -55,10 +57,9 @@ const Tab2: React.FC = () => {
           }]}
           onDidDismiss={() => setPhotoToDelete(undefined)}
         />
-
-
       </IonContent>
     </IonPage>
+    </>
   );
 };
 
